@@ -13,7 +13,7 @@ This API provides functionalities for user registration, login, and managing tod
   ```json
   {
     "username": "string",
-    "email": "string",
+    "email": "string (optional)",
     "password": "string"
   }
   ```
@@ -117,3 +117,57 @@ This API provides functionalities for user registration, login, and managing tod
 - `deadline`: Deadline of the todo task (datetime, optional)
 - `created_at`: Date and time when the task was created (auto-generated)
 - `modified_at`: Date and time when the task was last modified (auto-generated)
+
+
+## Installation
+
+To run this project locally, follow these steps:
+
+1. Clone the repository:
+    ```
+    git clone <repository-url>
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd project-directory
+    ```
+
+3. Create a virtual environment:
+
+    ```bash
+    python -m venv venv
+    ```
+
+4. Activate the virtual environment:
+
+    - On Windows:
+
+        ```bash
+        venv\Scripts\activate
+        ```
+
+    - On macOS and Linux:
+
+        ```bash
+        source venv/bin/activate
+        ```
+
+5. Install the dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+6. Run migrations:
+
+    ```bash
+    python manage.py migrate
+    ```
+
+7. Start the development server:
+
+    ```bash
+    python manage.py runserver
+    ```
