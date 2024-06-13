@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'todo-mdmanish.onrender.com']
-
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:8000/', 'https://todo-mdmanish.onrender.com']
 
 # Application definition
 
