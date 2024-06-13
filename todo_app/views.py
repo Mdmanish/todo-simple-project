@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import Todo
 
+
 class RegisterUserView(APIView):
 
 	def post(self, request):
