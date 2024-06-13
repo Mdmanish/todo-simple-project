@@ -52,14 +52,18 @@ class TodoListCreateView(APIView):
 
 class TodoRetrieveUpdateDeleteView(APIView):
 	permission_classes = [IsAuthenticated]
-	
+
 	def get(self, request, todo_id):
 		todo_obj = get_object_or_404(Todo, pk=todo_id)
+		if todo_obj.user != request.user:
+			return Response({"You are not allowed to see anoter user task"}, status=status.HTTP_403_FORBIDDEN)
 		serializer = TodoSerializer(todo_obj)
 		return Response(serializer.data, status=status.HTTP_200_OK)
 
 	def put(self, request, todo_id):
 		todo_obj = get_object_or_404(Todo, pk=todo_id)
+		if todo_obj.user != request.user:
+			return Response({"You are not allowed to modify anoter user task"}, status=status.HTTP_403_FORBIDDEN)
 		serializer = TodoSerializer(todo_obj, data=request.data, partial=True)
 		if serializer.is_valid():
 			serializer.save()
@@ -68,5 +72,7 @@ class TodoRetrieveUpdateDeleteView(APIView):
 
 	def delete(self, request, todo_id):
 		todo_obj = get_object_or_404(Todo, pk=todo_id)
+		if todo_obj.user != request.user:
+			return Response({"You are not allowed to delete anoter user task"}, status=status.HTTP_403_FORBIDDEN)
 		todo_obj.delete()
 		return Response({"Todo task is deleted."}, status=status.HTTP_204_NO_CONTENT)
