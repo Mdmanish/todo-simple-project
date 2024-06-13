@@ -20,7 +20,7 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'send-reminder-emails-every-hour': {
         'task': 'todo_app.tasks.send_reminder_emails',
-        # 'schedule': crontab(minute=0, hour='*'),  # Every hour
-        'schedule':crontab(minute='*/1'),
+        'schedule': crontab(minute=0, hour='*'),  # Every hour
+        # 'schedule':crontab(minute='*/1'),  # Every minute
     },
 }

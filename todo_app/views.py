@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .serializers import RegisterUserSerializer, LoginUserSerializer, TodoSerializer
 from django.contrib.auth import login, authenticate
@@ -35,6 +36,8 @@ class LoginUserView(APIView):
 		return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TodoListCreateView(APIView):
+	permission_classes = [IsAuthenticated]
+
 	def get(self, request):
 		todo_obj = Todo.objects.filter(user=request.user)
 		serializers = TodoSerializer(todo_obj, many=True)
@@ -48,6 +51,8 @@ class TodoListCreateView(APIView):
 		return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class TodoRetrieveUpdateDeleteView(APIView):
+	permission_classes = [IsAuthenticated]
+	
 	def get(self, request, todo_id):
 		todo_obj = get_object_or_404(Todo, pk=todo_id)
 		serializer = TodoSerializer(todo_obj)

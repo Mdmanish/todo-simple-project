@@ -118,6 +118,16 @@ This API provides functionalities for user registration, login, and managing tod
 - `created_at`: Date and time when the task was created (auto-generated)
 - `modified_at`: Date and time when the task was last modified (auto-generated)
 
+## Celery Tasks
+
+### Send Reminder Emails
+
+- **Task Name:** `send_reminder_emails`
+- **Description:** Sends reminder emails for tasks whose deadlines are approaching.
+- **Functionality:**
+  - Uses APScheduler to schedule reminder emails 1 hour and 15 minutes before the task deadline.
+  - Sends an email to the user reminding them of the upcoming task deadline.
+
 
 ## Installation
 
